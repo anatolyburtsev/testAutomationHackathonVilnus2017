@@ -4,8 +4,12 @@ import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import pages.blocks.FiltersBlock;
 import ru.alfabank.alfatest.cucumber.api.AkitaScenario;
 import ru.alfabank.steps.DefaultSteps;
+
+import static ru.alfabank.alfatest.cucumber.api.Pages.getPage;
+import static ru.alfabank.alfatest.cucumber.api.Pages.withPage;
 
 public class AmazonSteps {
 
@@ -38,5 +42,11 @@ public class AmazonSteps {
     @When("^user click on (?:button|field|checkbox) \"([^\"]*)\"$")
     public void userClickOnButton(String elementName)  {
         steps.clickOnElement(elementName);
+    }
+
+    @When("^user (?:select|unselect) filter \"([^\"]*)\"$")
+    public void selectFilterByName(String filterToSelect)  {
+        FiltersBlock filtersBlock = getPage(FiltersBlock.class, true);
+        filtersBlock.selectFilterByName(filterToSelect);
     }
 }
