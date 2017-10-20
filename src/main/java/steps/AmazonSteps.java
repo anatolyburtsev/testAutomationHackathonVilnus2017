@@ -1,23 +1,20 @@
 package steps;
 
-import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.SelenideElement;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import groovy.lang.Delegate;
 import pages.SearchResultsPage;
 import pages.blocks.FiltersBlock;
 import ru.alfabank.alfatest.cucumber.api.AkitaScenario;
 import ru.alfabank.steps.DefaultSteps;
 
-import java.util.List;
-
 import static ru.alfabank.alfatest.cucumber.api.Pages.getPage;
 
 public class AmazonSteps {
 
-    @Deprecated
-    AkitaScenario akitaScenario;
+    @Delegate
+    private AkitaScenario akitaScenario;
 
     private DefaultSteps steps = new DefaultSteps();
 
