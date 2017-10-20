@@ -109,9 +109,9 @@ public class AmazonSteps {
         steps.clickOnElement("MusicAndDance");
         loadPage("MusicDanceGames");
         steps.addValue("HighPrice", "30");
-        akitaScenario.getCurrentPage().getElement("HighPrice").scrollTo();
-        akitaScenario.getCurrentPage().getElement("Go").click();
-        steps.waitForSeconds(1);
+//        akitaScenario.getCurrentPage().getElement("HighPrice").scrollTo();
+//        akitaScenario.getCurrentPage().getElement("Go").click();
+//        steps.waitForSeconds(1);
         akitaScenario.getCurrentPage().getElementsList("GamesList").get(0).click();
         loadPage("GamePage");
         steps.clickOnElement("addToCart");

@@ -14,7 +14,7 @@ public class MusicDanceGamesPage extends AkitaPage{
     private SelenideElement highPrice;
 
     @Name("Go")
-    @FindBy(xpath = "//*[@value='Go']")
+    @FindBy(xpath = "//*[@id=\"a-autoid-14\"]/span/input")
     private SelenideElement go;
 
     @Name("GamesList")
