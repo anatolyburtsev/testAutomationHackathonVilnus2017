@@ -4,7 +4,6 @@ buildscript {
     dependencies {
         classpath 'ru.alfalab.gradle:cucumber-reporting-gradle-plugin:0.1.0'
         classpath 'ru.alfalab.gradle:cucumber-parallel-test-gradle-plugin:0.2.1'
-        classpath 'nl.javadude.gradle.plugins:license-gradle-plugin:0.10.0'
     }
 }
 
@@ -20,9 +19,8 @@ apply plugin: 'java'
 apply plugin: 'groovy'
 apply plugin: 'ru.alfalab.cucumber-reporting'
 apply plugin: 'ru.alfalab.cucumber-parallel-test'
-apply plugin: 'license'
 
-description = """Template for your project (CHANGE ME)"""
+description = """Amazon shopping"""
 generateRunner.glue = ["ru.alfabank.steps", "steps"]
 
 if (project.hasProperty('projVersion')) {
@@ -71,9 +69,4 @@ task makeZip(type: Zip) {
     from('build/reports/cucumber') {
         into("${project.version}-testReport")
     }
-}
-
-license {
-    header rootProject.file('HEADER')
-    strictCheck true
 }
