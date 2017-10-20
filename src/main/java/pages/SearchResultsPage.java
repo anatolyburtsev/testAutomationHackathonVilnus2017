@@ -23,14 +23,14 @@ import ru.alfabank.alfatest.cucumber.api.AkitaPage.Name;
 
 import java.util.List;
 
+import static com.codeborne.selenide.Selenide.$$x;
+
 @Name("Search Results Page")
 public class SearchResultsPage extends AkitaPage {
 
-    @FindBy(xpath = "//ul[@id='s-results-list-atf']/li//div[@class='a-row a-spacing-none']//h2/..")
-    @Name("Search results item names")
-    public List<SelenideElement> searchResutsItemNames;
+    public static final String SEARCH_RESULT_ITEM_NAMES_XPATH = "//ul[@id='s-results-list-atf']/li//div[@class='a-row a-spacing-none']//h2/..";
 
     public void selectItemInList(int numberToSelect) {
-        searchResutsItemNames.get(numberToSelect).should(Condition.enabled).click();
+        $$x(SEARCH_RESULT_ITEM_NAMES_XPATH).get(numberToSelect).should(Condition.enabled).click();
     }
 }

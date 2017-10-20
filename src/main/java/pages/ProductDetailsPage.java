@@ -15,14 +15,10 @@
  */
 package pages;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.support.FindBy;
 import ru.alfabank.alfatest.cucumber.api.AkitaPage;
 import ru.alfabank.alfatest.cucumber.api.AkitaPage.Name;
-
-import static com.codeborne.selenide.Selenide.$x;
-import static java.lang.String.format;
 
 @Name("Product Details Page")
 public class ProductDetailsPage extends AkitaPage {
@@ -31,9 +27,9 @@ public class ProductDetailsPage extends AkitaPage {
     @Name("Product Images List")
     public SelenideElement imagesList;
 
-    @FindBy(xpath = "(//span[@data-action='main-image-click']//img)[2]")
-    @Name("Product main image")
-    public SelenideElement productMainImage;
+    @FindBy(id = "add-to-cart-button")
+    @Name("Add to cart button")
+    public SelenideElement addToCartButton;
 
 
 }
