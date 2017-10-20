@@ -76,7 +76,7 @@ public class AmazonSteps {
 
     @When("^count from field \"([^\"]*)\" will be equal (\\d+)$")
     public void countFromFieldWillBeEqual(String fieldName, int count) {
-        WebDriverWait wait = new WebDriverWait(WebDriverRunner.getWebDriver(), 60);
+        WebDriverWait wait = new WebDriverWait(WebDriverRunner.getWebDriver(), 120);
         ExpectedCondition<Boolean> expectation = assertion -> {
             String elementText = akitaScenario.getCurrentPage().getElement(fieldName).innerText();
             System.out.println("elementText = " + elementText);
