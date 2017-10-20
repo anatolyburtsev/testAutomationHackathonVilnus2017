@@ -18,4 +18,8 @@ public class SearchBlock extends AkitaPage{
     @Name("Shopping cart")
     @FindBy(id = "twotabsearchtextbox")
     private SelenideElement cart;
+
+    @FindBy(id = "nav-cart-count")
+    @Name("Items Quantity")
+    private SelenideElement cartCount;
 }
