@@ -1,8 +1,8 @@
 Feature: I would like ordering the last version of console
 
   Background:
-    Given user open page "" by link "" from property file
-    When user "" enter login and password
+    Given user open page "Sign in" by link "amazoneSignInUrl" from property file
+    When user "user" enter login and password
 
 
   Scenario: The last version of console should be availyble
