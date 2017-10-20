@@ -8,6 +8,7 @@ Feature: I would like to buy all this things
 
   Scenario: User should buy all things successful
     When page "Search block" was loaded
-    When count from field "" will be equal ""
+    Then count from field "Items Quantity" will be equal 4
+    When user click on button "Shopping cart"
     * page "Shopping cart" was loaded
     When user click on button "Proceed  to checkout"

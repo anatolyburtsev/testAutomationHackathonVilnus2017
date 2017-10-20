@@ -1,9 +1,13 @@
 package steps;
 
+import com.codeborne.selenide.WebDriverRunner;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import groovy.lang.Delegate;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.SearchResultsPage;
 import pages.blocks.FiltersBlock;
 import ru.alfabank.alfatest.cucumber.api.AkitaScenario;
@@ -14,7 +18,7 @@ import static ru.alfabank.alfatest.cucumber.api.Pages.getPage;
 public class AmazonSteps {
 
     @Delegate
-    private AkitaScenario akitaScenario;
+    private AkitaScenario akitaScenario = AkitaScenario.getInstance();
 
     private DefaultSteps steps = new DefaultSteps();
 
@@ -68,5 +72,22 @@ public class AmazonSteps {
         if (filterState.equalsIgnoreCase("true")) {
             filtersBlock.selectFilterByName(filterName);
         }
+    }
+
+    @When("^count from field \"([^\"]*)\" will be equal (\\d+)$")
+    public void countFromFieldWillBeEqual(String fieldName, int count) {
+        WebDriverWait wait = new WebDriverWait(WebDriverRunner.getWebDriver(), 60);
+        ExpectedCondition<Boolean> expectation = assertion -> {
+            String elementText = akitaScenario.getCurrentPage().getElement(fieldName).innerText();
+            System.out.println("elementText = " + elementText);
+            if(elementText.equals(String.valueOf(count))){
+                return true;
+            }
+            else {
+                steps.refreshPage();
+                return false;
+            }
+        };
+        wait.until(expectation);
     }
 }

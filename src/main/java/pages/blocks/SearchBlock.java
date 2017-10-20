@@ -16,7 +16,7 @@ public class SearchBlock extends AkitaPage{
     private SelenideElement submit;
 
     @Name("Shopping cart")
-    @FindBy(id = "twotabsearchtextbox")
+    @FindBy(id = "nav-cart")
     private SelenideElement cart;
 
     @FindBy(id = "nav-cart-count")
