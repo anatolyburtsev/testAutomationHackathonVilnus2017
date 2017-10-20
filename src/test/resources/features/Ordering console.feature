@@ -20,6 +20,8 @@ Feature: I would like ordering the last version of console
     Then page "Search Results Page" was loaded
     When user select item number "0" in search results item
     Then page "Product Details Page" was loaded
+    When user click on button "Add to cart button"
+    Then page "Smart added to Cart" was loaded
 
 
 
