@@ -108,7 +108,7 @@ public class AmazonSteps {
         loadPage("VideoGamesPL4Games");
         steps.clickOnElement("MusicAndDance");
         loadPage("MusicDanceGames");
-        steps.addValue("HighPrice", "30");
+//        steps.addValue("HighPrice", "30");
 //        akitaScenario.getCurrentPage().getElement("HighPrice").scrollTo();
 //        akitaScenario.getCurrentPage().getElement("Go").click();
 //        steps.waitForSeconds(1);

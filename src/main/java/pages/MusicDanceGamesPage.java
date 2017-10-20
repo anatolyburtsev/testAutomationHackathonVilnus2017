@@ -13,10 +13,10 @@ public class MusicDanceGamesPage extends AkitaPage{
     @FindBy(id = "high-price")
     private SelenideElement highPrice;
 
-    @Name("Go")
-    @FindBy(xpath = "//*[@id=\"a-autoid-14\"]/span/input")
-    private SelenideElement go;
-
+//    @Name("Go")
+//    @FindBy(xpath = "//*[@id=\"a-autoid-14\"]/span/input")
+//    private SelenideElement go;
+//
     @Name("GamesList")
     @FindBy(css = ".s-result-item")
     private List<SelenideElement> gamesList;
