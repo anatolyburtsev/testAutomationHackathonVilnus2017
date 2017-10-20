@@ -1,10 +1,18 @@
 package steps;
 
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import pages.SearchResultsPage;
+import pages.blocks.FiltersBlock;
 import ru.alfabank.alfatest.cucumber.api.AkitaScenario;
 import ru.alfabank.steps.DefaultSteps;
+
+import java.util.List;
+
+import static ru.alfabank.alfatest.cucumber.api.Pages.getPage;
 
 public class AmazonSteps {
 
@@ -23,7 +31,7 @@ public class AmazonSteps {
         steps.goToSelectedPageByLinkFromPropertyFile(pageName, linkKey);
     }
 
-    @Then("^page \"([^\"]*)\" was loaded$")
+    @Then("^(?:page|block) \"([^\"]*)\" was loaded$")
     public void loadPage(String pageName) {
         steps.loadPage(pageName);
     }
@@ -38,8 +46,20 @@ public class AmazonSteps {
         steps.clickOnElement(elementName);
     }
 
+    @When("^user (?:select|unselect) filter \"([^\"]*)\"$")
+    public void selectFilterByName(String filterToSelect)  {
+        FiltersBlock filtersBlock = getPage(FiltersBlock.class, true);
+        filtersBlock.selectFilterByName(filterToSelect);
+    }
+
     @Then("^(?:value|text) in field \"([^\"]*)\" equals \"([^\"]*)\"$")
     public void isValueInFieldEquals(String fieldName, String expectedValue) {
         steps.compareValInFieldAndFromStep(fieldName, expectedValue);
+    }
+
+    @When("^user select item number \"([^\"]*)\" in search results item$")
+    public void userSelectItemNumberInList(int elementNumber) {
+        SearchResultsPage searchResultsPage = getPage(SearchResultsPage.class, true);
+        searchResultsPage.selectItemInList(elementNumber);
     }
 }
