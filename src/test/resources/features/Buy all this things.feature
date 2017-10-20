@@ -8,4 +8,6 @@ Feature: I would like to buy all this things
 
   Scenario: User should buy all things successful
     When page "Search block" was loaded
-    
+    When count from field "" will be equal ""
+    * page "Shopping cart" was loaded
+    When user click on button "Proceed  to checkout"
