@@ -6,7 +6,7 @@ Feature: I would like ordering the last version of console
 
 
   Scenario: The last version of console should be availyble
-    Then page "" was loaded
-    When user enter to the field "" value ""
-    When user click on button ""
+    Then page "Main" was loaded
+   # When user enter to the field "Search field" value "playstaytion"
+   # When user click on button ""
 
