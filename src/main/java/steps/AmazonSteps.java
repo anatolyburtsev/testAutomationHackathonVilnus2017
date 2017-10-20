@@ -1,11 +1,10 @@
 package steps;
 
 import com.codeborne.selenide.WebDriverRunner;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import groovy.lang.Delegate;
+import lombok.experimental.Delegate;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.SearchResultsPage;
@@ -13,11 +12,13 @@ import pages.blocks.FiltersBlock;
 import ru.alfabank.alfatest.cucumber.api.AkitaScenario;
 import ru.alfabank.steps.DefaultSteps;
 
+import java.util.List;
+
 import static ru.alfabank.alfatest.cucumber.api.Pages.getPage;
 
 public class AmazonSteps {
 
-    @Delegate
+    @lombok.experimental.Delegate
     private AkitaScenario akitaScenario = AkitaScenario.getInstance();
 
     private DefaultSteps steps = new DefaultSteps();
@@ -43,12 +44,12 @@ public class AmazonSteps {
     }
 
     @When("^user click on (?:button|field|checkbox) \"([^\"]*)\"$")
-    public void clickOnButton(String elementName) {
+    public void clickOnButton(String elementName)  {
         steps.clickOnElement(elementName);
     }
 
     @When("^user (?:select|unselect) filter \"([^\"]*)\"$")
-    public void selectFilterByName(String filterToSelect) {
+    public void selectFilterByName(String filterToSelect)  {
         FiltersBlock filtersBlock = getPage(FiltersBlock.class, true);
         filtersBlock.selectFilterByName(filterToSelect);
     }
@@ -89,5 +90,30 @@ public class AmazonSteps {
             }
         };
         wait.until(expectation);
+    }
+
+    @When("^user open page with Music and Dance games$")
+    public void userOpenPageWithMusicAndDanceGames() throws Throwable {
+        loadPage("Main");
+        steps.clickOnElement("Departments");
+        loadPage("Department");
+        steps.waitForSeconds(1);
+        akitaScenario.getCurrentPage().getElementsList("AllCatogiesList").stream()
+            .filter(p -> "Video Games".equals(p.getText())).findFirst().get().scrollTo().click();
+        loadPage("VideoGames");
+        steps.clickOnElement("Playstation4");
+        loadPage("VideoGamesPL4");
+        akitaScenario.getCurrentPage().getElementsList("categories").stream()
+            .filter(p -> "Games".equals(p.getText())).findFirst().get().click();
+        loadPage("VideoGamesPL4Games");
+        steps.clickOnElement("MusicAndDance");
+        loadPage("MusicDanceGames");
+        steps.addValue("HighPrice", "30");
+        akitaScenario.getCurrentPage().getElement("HighPrice").scrollTo();
+        akitaScenario.getCurrentPage().getElement("Go").click();
+        steps.waitForSeconds(1);
+        akitaScenario.getCurrentPage().getElementsList("GamesList").get(0).click();
+        loadPage("GamePage");
+        steps.clickOnElement("addToCart");
     }
 }
