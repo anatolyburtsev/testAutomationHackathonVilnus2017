@@ -16,6 +16,7 @@ Feature: I would like ordering the last version of console
     When user select filter "Ship to Lithuania"
     When user select filter "Last 90 days"
     When user select filter "4 Stars & Up"
+    When user unselect filter Include Out of Stock if selected
     Then page "Search Results Page" was loaded
     When user select item number "0" in search results item
     Then page "Product Details Page" was loaded

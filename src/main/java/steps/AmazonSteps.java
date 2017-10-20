@@ -1,7 +1,5 @@
 package steps;
 
-import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.SelenideElement;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -9,8 +7,6 @@ import pages.SearchResultsPage;
 import pages.blocks.FiltersBlock;
 import ru.alfabank.alfatest.cucumber.api.AkitaScenario;
 import ru.alfabank.steps.DefaultSteps;
-
-import java.util.List;
 
 import static ru.alfabank.alfatest.cucumber.api.Pages.getPage;
 
@@ -42,12 +38,12 @@ public class AmazonSteps {
     }
 
     @When("^user click on (?:button|field|checkbox) \"([^\"]*)\"$")
-    public void clickOnButton(String elementName)  {
+    public void clickOnButton(String elementName) {
         steps.clickOnElement(elementName);
     }
 
     @When("^user (?:select|unselect) filter \"([^\"]*)\"$")
-    public void selectFilterByName(String filterToSelect)  {
+    public void selectFilterByName(String filterToSelect) {
         FiltersBlock filtersBlock = getPage(FiltersBlock.class, true);
         filtersBlock.selectFilterByName(filterToSelect);
     }
@@ -61,5 +57,15 @@ public class AmazonSteps {
     public void userSelectItemNumberInList(int elementNumber) {
         SearchResultsPage searchResultsPage = getPage(SearchResultsPage.class, true);
         searchResultsPage.selectItemInList(elementNumber);
+    }
+
+    @When("^user unselect filter Include Out of Stock if selected$")
+    public void userUnselectFilterIncludeOutOfStockIfSelected() {
+        String filterName = "Include Out of Stock";
+        FiltersBlock filtersBlock = getPage(FiltersBlock.class, true);
+        String filterState = filtersBlock.getFilterState(filterName);
+        if (filterState.equalsIgnoreCase("true")) {
+            filtersBlock.selectFilterByName(filterName);
+        }
     }
 }

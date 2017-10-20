@@ -27,9 +27,13 @@ import static java.lang.String.format;
 @Name("Amazon Filters")
 public class FiltersBlock extends AkitaPage {
     public static final String FILTER_ITEM_XPATH = "//div[@id='leftNavContainer']//span[text()='%s']/..";
+    public static final String FILTER_INPUT_XPATH = "//div[@id='leftNavContainer']//span[text()='%s']/../../input";
 
     public void selectFilterByName(String filterName) {
         $x(format(FILTER_ITEM_XPATH, filterName)).shouldBe(Condition.enabled).click();
     }
 
+    public String getFilterState(String filterName) {
+        return $x(format(FILTER_INPUT_XPATH, filterName)).getAttribute("value");
+    }
 }
